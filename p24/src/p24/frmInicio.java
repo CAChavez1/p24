@@ -362,27 +362,33 @@ public class frmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jrbSegundosActionPerformed
 
     private void jrbDerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbDerActionPerformed
+        try {
             jrbDer.setSelected(true);
             jrbIzq.setSelected(false);
-            double Kilos = Double.parseDouble(txtKG.getText());
-            txtKG.setText(String.valueOf(Kilos * 1000));
-            txtKG.setText("");
+            txtGramos.setEnabled(true);
+            txtKG.setEnabled(false);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Error,debes ingresar un numero");
+        }
     }//GEN-LAST:event_jrbDerActionPerformed
 
     private void jrbIzqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbIzqActionPerformed
-        jrbIzq.setSelected(true);
+        try {
+            jrbIzq.setSelected(true);
             jrbDer.setSelected(false);
-            double Gramos = Double.parseDouble(txtGramos.getText());
-            txtGramos.setText(String.valueOf(Gramos / 1000));
-            txtGramos.setText("");
+            txtKG.setEnabled(true);
+            txtGramos.setEnabled(false);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Error,debes ingresar un numero");
+        }
     }//GEN-LAST:event_jrbIzqActionPerformed
 
     private void txtKGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKGActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtKGActionPerformed
 
     private void txtGramosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGramosActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtGramosActionPerformed
 
     private void txtResulHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtResulHActionPerformed
@@ -390,7 +396,16 @@ public class frmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_txtResulHActionPerformed
 
     private void btnConvierteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvierteActionPerformed
-        // TODO add your handling code here:
+        if (jrbDer.isSelected()) {
+            double Gramos = Double.parseDouble(txtGramos.getText());
+            txtGramos.setText(String.valueOf(Gramos / 1000));
+            txtGramos.setText("");
+        } else {
+            double Kilos = Double.parseDouble(txtKG.getText());
+            txtKG.setText(String.valueOf(Kilos * 1000));
+            txtKG.setText("");
+        }
+
     }//GEN-LAST:event_btnConvierteActionPerformed
 
     /**
