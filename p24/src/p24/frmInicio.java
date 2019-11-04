@@ -275,9 +275,9 @@ public class frmInicio extends javax.swing.JFrame {
                                 .addComponent(jrbSegundos))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblHoras)
-                                    .addComponent(lblResulH))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblResulH, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblHoras))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtResulH)
@@ -362,6 +362,7 @@ public class frmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jrbSegundosActionPerformed
 
     private void jrbDerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbDerActionPerformed
+        txtKG.setText(null);
         try {
             jrbDer.setSelected(true);
             jrbIzq.setSelected(false);
@@ -373,6 +374,7 @@ public class frmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jrbDerActionPerformed
 
     private void jrbIzqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbIzqActionPerformed
+        txtGramos.setText(null);
         try {
             jrbIzq.setSelected(true);
             jrbDer.setSelected(false);
@@ -396,14 +398,18 @@ public class frmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_txtResulHActionPerformed
 
     private void btnConvierteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvierteActionPerformed
-        if (jrbDer.isSelected()) {
-            double Gramos = Double.parseDouble(txtGramos.getText());
-            txtGramos.setText(String.valueOf(Gramos / 1000));
-            txtGramos.setText("");
-        } else {
-            double Kilos = Double.parseDouble(txtKG.getText());
-            txtKG.setText(String.valueOf(Kilos * 1000));
-            txtKG.setText("");
+        try {
+            if (jrbDer.isSelected()) {
+                double Gramos = Double.parseDouble(txtGramos.getText());
+                txtKG.setText(String.valueOf(Gramos / 1000));
+                txtGramos.setText("");
+            } else {
+                double Kilos = Double.parseDouble(txtKG.getText());
+                txtGramos.setText(String.valueOf(Kilos * 1000));
+                txtKG.setText("");
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Error,debes ingresar un numero");
         }
 
     }//GEN-LAST:event_btnConvierteActionPerformed
